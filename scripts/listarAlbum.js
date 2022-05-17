@@ -1,4 +1,4 @@
-import getAlbum from "conexaoApi.js";
+import getAlbum from "./conexaoApi.js";
 
 function imprimeAlbum(album) {
     var elementoHTML = document.querySelector(".lista");
