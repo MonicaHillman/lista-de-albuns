@@ -1,6 +1,6 @@
-import getAlbum from "./conexaoApi.js";
+import getMusica from "./conexaoApi.js";
 
-function imprimeAlbum(album) {
+function imprimeMusica(album) {
     var elementoHTML = document.querySelector(".lista");
 
     elementoHTML.innerHTML =
@@ -13,11 +13,11 @@ function imprimeAlbum(album) {
 }
 
 
-async function listarAlbum(artista) {
-    const album = await getAlbum(artista);
-    imprimeAlbum(album);
+async function listarMusica(artista) {
+    const musica = await getMusica(artista);
+    imprimeMusica(musica);
 
 
 }
 
-export default listarAlbum;
+export default listarMusica;
