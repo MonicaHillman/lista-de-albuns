@@ -1,5 +1,5 @@
 async function getAlbum(endpoint) {
-    const API_URL = `https://spotify23.p.rapidapi.com/search/?q=${endpoint}&type=albums&offset=0&limit=10&numberOfTopResults=5`
+    const API_URL = `https://spotify23.p.rapidapi.com/search/?q=${endpoint}&type=tracks&offset=0&limit=10&numberOfTopResults=5`
     const dadosAlbum = [];
     try {
         const listaAlbuns = await fetch(API_URL, {
@@ -10,12 +10,14 @@ async function getAlbum(endpoint) {
             }
         })
         const listaAlbunsConvertido = await listaAlbuns.json();
-        const dados = await listaAlbunsConvertido.albums.items;
+
+        console.log(listaAlbunsConvertido);
+        const dados = await listaAlbunsConvertido.tracks.items;
 
         for (var i = 0; i != dados.length; i++) {
             dadosAlbum.push({
                 nome: dados[i].data.name,
-                imagem: dados[i].data.coverArt.sources[0].url
+                id: dados[i].data.id,
             })
         }
         return dadosAlbum;
@@ -25,7 +27,7 @@ async function getAlbum(endpoint) {
     catch (e) {
         dadosAlbum.push({
             nome: "não encontrado",
-            imagem: "imagem não encontrada"
+            id: "imagem não encontrada"
         })
         return dadosAlbum;
     }

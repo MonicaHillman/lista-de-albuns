@@ -5,3 +5,4 @@ botao.addEventListener('click', () => {
     var nome = document.getElementById('artista').value;
     listarAlbum(nome);
 });
+
