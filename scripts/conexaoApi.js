@@ -1,5 +1,5 @@
 async function getMusica(endpoint) {
-    const API_URL = `https://spotify23.p.rapidapi.com/search/?q=${endpoint}&type=tracks&offset=0&limit=10&numberOfTopResults=5`
+    const API_URL = `https://spotify23.p.rapidapi.com/search/?q=${endpoint}&type=episodes&offset=0&limit=10&numberOfTopResults=5`
     const dadosMusica = [];
     try {
         const listaMusica = await fetch(API_URL, {
@@ -11,12 +11,13 @@ async function getMusica(endpoint) {
         })
         const listaMusicaConvertido = await listaMusica.json();
 
-        const dados = await listaMusicaConvertido.tracks.items;
+        const dados = await listaMusicaConvertido.episodes.items;
+
 
         for (var i = 0; i != dados.length; i++) {
             dadosMusica.push({
                 nome: dados[i].data.name,
-                id: dados[i].data.id,
+                id: dados[i].data.uri.split(":").pop(),
             })
         }
         return dadosMusica;
